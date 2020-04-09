@@ -51,16 +51,30 @@ def tri_az
   puts "-" * 10
   puts "Voici la liste par ordre alphabétique"
 
-  no_arobase = HANDLES.map{|handle| handle.gsub(/@/, "")}
-  puts no_arobase.sort{|a, b| a.downcase <=> b.downcase }
+  puts "Veux-tu vraiment la voir ? (y/n)"
+  print "> "
+  answer1 = gets.chomp
+
+  if answer1 == "y"
+    no_arobase = HANDLES.map{|handle| handle.gsub(/@/, "")}
+    puts no_arobase.sort{|a, b| a.downcase <=> b.downcase }
+  else
+  end
 end
 
 def shorter_handles
   puts "-" * 10
   puts "Voici les 50 handles les plus courts"
 
-  handles_length = HANDLES.sort_by{|handle| handle.length}
-  puts handles_length[0..50]
+  puts "Veux-tu vraiment la voir ? (y/n)"
+  print "> "
+  answer1 = gets.chomp
+
+  if answer1 == "y"
+    handles_length = HANDLES.sort_by{|handle| handle.length}
+    puts handles_length[0..50]
+  else
+  end
 end
 
 def epenser_position
@@ -68,6 +82,7 @@ def epenser_position
   puts "Quelle est la position de @epenser ?"
 
   puts "@epenser est à la #{HANDLES.index("@epenser")}e position"
+  puts "-" * 20
 end
 
 def perform
