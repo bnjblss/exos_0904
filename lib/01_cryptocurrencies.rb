@@ -23,14 +23,34 @@ def sort_smaller(hash)
 end
 
 def coin_name(hash)
-  puts hash.count{|k| k.to_s[/[Cc]oin]/]}
+  puts "-" * 10
+  puts "Voici le nombre de cryptos avec le mot coin"
+  puts hash.count{|k, i| k.to_s.downcase.include?("coin")}
+end
+
+def crypto_under (hash)
+  puts "-" * 10
+  puts "Voici le nombre de cryptos < à 6000$"
+  puts hash.count{|k, i| i.to_f < 6000}
+end
+
+def best_crypto_under (hash)
+  puts "-" * 10
+  puts "et les 5 meilleurs < à 6000$"
+  hash_under = hash.select{|k, i| i.to_f < 6000}
+
+  puts Hash[hash_under.sort_by{|k, i| -i}[0..4]]
+
+  puts "-" * 20
 end
 
 def perform
   merged_arrays
   sort_higher(merged_arrays)
   sort_smaller(merged_arrays)
-  coin_name(hash)
+  coin_name(merged_arrays)
+  crypto_under(merged_arrays)
+  best_crypto_under(merged_arrays)
 end
 
 perform
